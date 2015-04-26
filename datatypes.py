@@ -26,6 +26,7 @@ dictionary = dict(
                   )
 
 print(type(dictionary),dictionary)
+print(dictionary.get('one'))
 
 boolean = False
 a,b = 0,1
