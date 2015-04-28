@@ -95,26 +95,26 @@ length = len(definitions)
 
 # Obtain a positive integer greater than 1 from the user.
 while True:
-        # Assign the variable "maxTries" to the user-defined number of
+        # Assign the variable "max_tries" to the user-defined number of
         # correct guesses until the program ends.
         try:
-            max_Tries = int(input('There are {0} vocabulary words.  How many '
+            max_tries = int(input('There are {0} vocabulary words.  How many '
                                  'correct answers do you want to give before'
                                  ' the program quits?\n> '.format(length)))
         except ValueError:
             print("That's not an int!")
             continue
         else:
-            if max_Tries < 1:
+            if max_tries < 1:
                 print("Enter 1 or greater.")
                 continue
             else:
                 break
             
 count = 0
-num_Correct = 0
-num_Incorrect = 0
-num_Tries = 0
+num_correct = 0
+num_incorrect = 0
+num_tries = 0
 
 print('Possible answers are listed below.\n')
 
@@ -126,12 +126,12 @@ for key in sorted(definitions.keys(), key=str.lower):
 print('\n')
         
 print('The program will end after you have given {0} correct answers.'
-      .format(max_Tries))
+      .format(max_tries))
 print('You can also end the program by typing Ctrl-D\n')
 
-# Continue asking questions until the user has been asked maxTries
+# Continue asking questions until the user has been asked max_tries
 # questions.
-while count < max_Tries:
+while count < max_tries:
     # Assign the variable "word" to a random key in the
     # definitions dictionary.
     word = random.choice(list(definitions.keys()))
@@ -140,35 +140,35 @@ while count < max_Tries:
     definition = definitions[word]
     print('Definition: ', definition,'\n')
     answer = input('What is the matching concept?\n> ')
-    num_Tries += 1
+    num_tries += 1
     if answer == word:
         count += 1
-        num_Correct += 1
+        num_correct += 1
         print("That's correct! You've answered {0} correctly.\n"
-              .format(num_Correct))
-        tries_Left = max_Tries - num_Tries
+              .format(num_correct))
+        tries_left = max_tries - num_tries
         # If there are more terms in the dictionary than the number of
         # tries the user has left, and the user has correctly matched
         # the definition with the word, remove that key:value from the
         # dictionary to avoid asking the user the same question.
-        if len(definitions) > tries_Left:
+        if len(definitions) > tries_left:
             del definitions[word]
     else:
         print('That is incorrect.  The answer is:', word,'\n')
-        num_Incorrect += 1
+        num_incorrect += 1
         continue
         
 
-score = 100 * (num_Correct / num_Tries)
+score = 100 * (num_correct / num_tries)
 
 
-if num_Incorrect == 0:
+if num_incorrect == 0:
     print("You didn't miss any!  Looks like you're ready for the quiz.")
-elif num_Incorrect == 1:
+elif num_incorrect == 1:
     print('You only missed 1.  Not too shabby.')
 else:
     # Display the amount of questions the user guessed correctly and
     # incorrectly.  Display the score with only 2 decimal places.
     print('You got {0} right and missed {1}.  Your score was '
-          '{number:.{digits}f}%'.format(num_Correct, num_Incorrect,
+          '{number:.{digits}f}%'.format(num_correct, num_incorrect,
                                         number=score, digits=2))
