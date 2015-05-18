@@ -121,7 +121,7 @@ print('Possible answers are listed below.\n')
 # Print out a list of all keys in the definitions dictionary sorted
 # alphabetically, with spacing characters between each key
 for key in sorted(definitions.keys(), key=str.lower):
-    print(key,' |  ', end="")
+    print(key,' | ', end="")
 
 print('\n')
         
